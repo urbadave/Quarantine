@@ -71,8 +71,7 @@ namespace Quarantine
             return (index != -1);
         }
 
-        public bool isWorkDay(DateTime check){
-             
+        public bool isWorkDay(DateTime check){             
             var isWeekend = (check.DayOfWeek == DayOfWeek.Saturday || check.DayOfWeek == DayOfWeek.Sunday);
             if(isWeekend) return false;
 
