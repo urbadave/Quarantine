@@ -14,7 +14,14 @@ namespace Quarantine
             var days = span.Days;
             var weeks = days/7;
 
-            var workDays = new WorkDays();
+            var factory = new HolidayFactory();
+            var holidayList = new List<DateTime>();
+            for(var y = start.Year; y <= today.Year; y++)
+            {
+                holidayList.AddRange(factory.GetHolidayList(y));
+            }
+
+            var workDays = new WorkDays(holidayList);
             var totalWorkDays = 0;
             var checkDay = start;
             while(checkDay < today){
@@ -26,7 +33,7 @@ namespace Quarantine
             Console.WriteLine($"or {totalWorkDays} work days");
             Console.WriteLine($"or {weeks} weeks");
             Console.WriteLine($"starting from {start.ToString("MM/dd/yyyy")}");
-            Console.WriteLine("Holidays accounted for through 2025");
+            Console.WriteLine("Holidays are dynamicaly calculated.");
 
             var nothing = Console.ReadLine();
         }
